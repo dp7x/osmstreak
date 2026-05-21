@@ -1,24 +1,24 @@
 # OSM Streak API Documentation
 
-Questa documentazione descrive come ottenere i dati del tuo profilo OSM Streak e integrarli nel tuo profilo OpenStreetMap.
+This documentation describes how to retrieve your OSM Streak profile data and integrate it into your OpenStreetMap profile.
 
 ## API Endpoints
 
-### 1. API JSON - Ottieni dati utente in JSON
+### 1. JSON API - Get user data in JSON
 
 **Endpoint:** `GET /api/user/<username>`
 
-**Descrizione:** Restituisce i dati pubblici dell'utente in formato JSON (score, level, streak).
+**Description:** Returns the user's public data in JSON format (score, level, streak).
 
-**Parametri:**
-- `<username>` - Il nome utente OSM (case-sensitive)
+**Parameters:**
+- `<username>` - The OSM username (case-sensitive)
 
-**Esempio di richiesta:**
+**Example request:**
 ```
 GET /api/user/MapperName
 ```
 
-**Risposta (200 OK):**
+**Response (200 OK):**
 ```json
 {
   "name": "MapperName",
@@ -29,28 +29,28 @@ GET /api/user/MapperName
 }
 ```
 
-**Errori:**
-- `404 Not Found` - L'utente non esiste
+**Errors:**
+- `404 Not Found` - User doesn't exist
 
-**Caso d'uso:**
-- Integrare i dati in applicazioni custom
-- Creare dashboard personali
-- Sincronizzare dati con altri sistemi
+**Use cases:**
+- Integrate data into custom applications
+- Create personal dashboards
+- Sync data with other systems
 
 ---
 
-### 2. Widget HTML - Embed nel profilo OSM
+### 2. HTML Widget - Embed in OSM profile
 
 **Endpoint:** `GET /widget/<username>`
 
-**Descrizione:** Restituisce un widget HTML embeddabile che mostra score, level e streak dell'utente con uno stile elegante.
+**Description:** Returns an embeddable HTML widget showing the user's score, level, and streak with an elegant style.
 
-**Parametri:**
-- `<username>` - Il nome utente OSM (case-sensitive)
+**Parameters:**
+- `<username>` - The OSM username (case-sensitive)
 
-**Come usare:**
+**How to use:**
 
-Nel tuo profilo OpenStreetMap, aggiungi un iframe nella sezione "About" o "Description":
+In your OpenStreetMap profile, add an iframe in the "About" or "Description" section:
 
 ```html
 <iframe src="https://streak.osmz.ru/widget/MapperName" 
@@ -60,28 +60,27 @@ Nel tuo profilo OpenStreetMap, aggiungi un iframe nella sezione "About" o "Descr
 </iframe>
 ```
 
-**Caratteristiche:**
-- ✅ Responsive e mobile-friendly
-- ✅ Gradient viola elegante
-- ✅ Mostra Score, Level, Days di streak
-- ✅ Link al sito ufficiale di OSM Streak
-- ✅ Si aggiorna automaticamente dal database
+**Features:**
+- ✅ Responsive and mobile-friendly
+- ✅ Shows Score, Level, Streak Days
+- ✅ Link to official OSM Streak website
+- ✅ Auto-updates from the database
 
-**Errori:**
-- `404 Not Found` - L'utente non esiste
+**Errors:**
+- `404 Not Found` - User does not exist
 
 ---
 
-### 3. Badge SVG - Usa nei README/Profili
+### 3. SVG Badge - Use in README/Profiles
 
 **Endpoint:** `GET /badge/<username>`
 
-**Descrizione:** Restituisce un badge SVG dinamico con i dati dell'utente. Perfetto per README di GitHub, profili, etc.
+**Description:** Returns a dynamic SVG badge with the user's data. Perfect for GitHub READMEs, profiles, etc.
 
-**Parametri:**
-- `<username>` - Il nome utente OSM (case-sensitive)
+**Parameters:**
+- `<username>` - The OSM username (case-sensitive)
 
-**Come usare:**
+**How to use:**
 
 **In Markdown (GitHub README, etc.):**
 ```markdown
@@ -93,30 +92,29 @@ Nel tuo profilo OpenStreetMap, aggiungi un iframe nella sezione "About" o "Descr
 <img src="https://streak.osmz.ru/badge/MapperName" alt="OSM Streak Badge" />
 ```
 
-**Nel profilo OpenStreetMap:**
+**In OpenStreetMap profile:**
 ```html
 <img src="https://streak.osmz.ru/badge/MapperName" alt="OSM Streak" style="max-width: 350px;" />
 ```
 
 **Caratteristiche:**
-- ✅ SVG dinamico (si aggiorna in tempo reale)
-- ✅ Mostra nome utente, score, level e streak
-- ✅ Design elegante con gradient
-- ✅ Funziona ovunque supporti immagini
+- ✅ Dynamic SVG (real-time updates)
+- ✅ Shows username, score, level, and streak
+- ✅ Works anywhere images are supported
 
-**Errori:**
-- `404 Not Found` - L'utente non esiste
+**Errors:**
+- `404 Not Found` - User does not exist
 
 ---
 
-## Esempi di utilizzo
+## Usage Examples
 
-### Esempio 1: Aggiungere il widget al profilo OSM
+### Example 1: Add the widget to your OSM profile
 
-1. Vai su [openstreetmap.org](https://www.openstreetmap.org)
-2. Accedi al tuo profilo
-3. Clicca su "Edit Profile"
-4. Nella sezione "About me", aggiungi:
+1. Go to [openstreetmap.org](https://www.openstreetmap.org)
+2. Log in to your profile
+3. Click "Edit Profile"
+4. Nn the "About me" section, add:
 ```html
 <h3>🎯 My OSM Streak Stats</h3>
 <iframe src="https://streak.osmz.ru/widget/TuoNomeUtente" 
@@ -125,20 +123,20 @@ Nel tuo profilo OpenStreetMap, aggiungi un iframe nella sezione "About" o "Descr
         style="border:none; border-radius: 8px;">
 </iframe>
 ```
-5. Salva le modifiche
+5. Save your changes
 
-### Esempio 2: Aggiungere il badge a GitHub
+### Example 2: Add the badge to GitHub
 
-Nel tuo README.md di GitHub:
+In your GitHub README.md:
 ```markdown
 # My OSM Contributions
 
 ![OSM Streak](https://streak.osmz.ru/badge/TuoNomeUtente)
 
-Sto mappando ogni giorno con OSM Streak!
+I'm mapping every day with OSM Streak!
 ```
 
-### Esempio 3: Usare l'API JSON in JavaScript
+### Example 3: Use the JSON API in JavaScript
 
 ```javascript
 async function getStreakData(username) {
@@ -166,48 +164,41 @@ getStreakData('MapperName');
 
 ---
 
-## Note Importanti
+## Important Notes
 
 ### Case Sensitivity
-- I nomi utente **sono case-sensitive**
-- `mapper` e `Mapper` sono utenti diversi
-- Controlla il capitalization nel tuo nome OSM
+- Usernames are **case-sensitive**
+- `mapper` e `Mapper` are different users
+- Check the capitalization of your OSM name
 
 ### Privacy
-- Tutti gli endpoint sono **pubblici**
-- Non è necessaria autenticazione
-- I dati mostrati sono gli stessi visibili nel profilo pubblico
+- All endpoints are **public**
+- No authentication required
+- The data shown is the same as what's visible in the public profile
 
 ### Rate Limiting
-- Nessun limite di rate ufficiale per ora
-- Per uso massivo, contatta gli amministratori
+- No official rate limit at this time
+- For heavy usage, contact the administrators
 
 ### CORS
-- Gli endpoint supportano CORS per richieste da browser
+- Endpoints support CORS for browser requests
 
 ---
 
 ## Troubleshooting
 
-**D: Ottengo 404 Not Found**
-- Controlla che il nome utente sia corretto e con il capitalization giusto
-- Verifica che l'utente abbia completato almeno una sfida in OSM Streak
+**D: I'm getting 404 Not Found**
+- Check that the username is correct and has the right capitalization
+- Verify that the user has completed at least one challenge in OSM Streak
 
-**D: Il widget non si carica**
-- Controlla che l'URL sia corretto
-- Verifica che il dominio sia accessibile
-- Controlla la console del browser per errori
+**D: The widget doesn't load**
+- Check that the URL is correct
+- Verify that the domain is accessible
+- Check the browser console for errors
 
-**D: Il badge SVG non si aggiorna**
-- Il badge è dinamico e si aggiorna quando visiti l'URL
-- I browser e i servizi potrebbero cachare l'immagine
-- Se usi servizi CDN, potrebbero cachetrare per più tempo
+**D: The SVG badge doesn't update**
+- The badge is dynamic and updates when you visit the URL
+- Browsers and services may cache the image
+- If using CDN services, they may cache it for longer
 
 ---
-
-## Support
-
-Per problemi o suggerimenti, apri un issue su GitHub:
-[dp7x/osmstreak/issues](https://github.com/dp7x/osmstreak/issues)
-
-Oppure contatta l'amministratore di OSM Streak.
