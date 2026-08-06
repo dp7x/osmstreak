@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ 'New Task' if is_new else 'Edit Task' }}</title>
+    <style>
+      label { display: block; margin: 6px 0; }
+      textarea { width: 95%; font-family: monospace; }
+    </style>
+  </head>
+  <body>
+    <h1>{{ 'New Task' if is_new else 'Edit Task' }}</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+        {% for category, msg in messages %}
+          <li><strong>{{ category }}:</strong> {{ msg }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <form method="post">
+      <label>Title: <input name="title" value="{{ task.title if task and task.title is defined else '' }}"></label>
+      <label>Slug/filename (no extension): <input name="slug" value="{{ filename if filename else (task.title if task and task.title is defined else '') }}"></label>
+      <label>Emoji: <input name="emoji" value="{{ task.emoji if task and task.emoji is defined else '📍' }}"></label>
+      <label>Description:<br>
+        <textarea name="description" rows="4">{{ task.description if task and task.description is defined else '' }}</textarea>
+      </label>
+      <p>Advanced: edit raw YAML (the full task); required keys: title, emoji, description</p>
+      <textarea name="raw_yaml" rows="20">{{ raw_yaml_text }}</textarea>
+      <p><button type="submit">Save</button> <a href="{{ url_for('tasks_admin.index') }}">Cancel</a></p>
+    </form>
+  </body>
+</html>

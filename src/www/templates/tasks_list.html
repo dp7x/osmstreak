@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tasks</title>
+    <style>
+      table { border-collapse: collapse; }
+      td, th { padding: 6px 10px; border: 1px solid #ccc; }
+      a.button { padding: 6px 10px; background: #eee; border: 1px solid #bbb; text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <h1>Tasks</h1>
+    <p><a class="button" href="{{ url_for('tasks_admin.new_task') }}">Create new task</a></p>
+    <table>
+      <thead><tr><th>File</th><th>Title</th><th>Actions</th></tr></thead>
+      <tbody>
+      {% for t in tasks %}
+        <tr>
+          <td>{{ t.file }}</td>
+          <td>{{ t.title or '—' }}</td>
+          <td>
+            <a href="{{ url_for('tasks_admin.edit_task', filename=t.file) }}">Edit</a>
+            <form action="{{ url_for('tasks_admin.delete_task', filename=t.file) }}" method="post" style="display:inline" onsubmit="return confirm('Delete?');">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
